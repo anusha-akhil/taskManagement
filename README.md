@@ -6,4 +6,4 @@
 4) Click on the Add task button directed to the new page where we can create a new task,
 5) from home page each task can updae and delete,
 6) flutter local notification is used to display the notification in this app 
-7) On clicking notification it shows some message
+7) On clicking notification it shows some message when app is in foreground
