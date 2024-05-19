@@ -1,4 +1,3 @@
-
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,7 +22,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-   static final GlobalKey<NavigatorState> navigatorKey =
+  static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey(debugLabel: 'Main Navigator');
   const MyApp({super.key});
 
@@ -34,13 +33,13 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: '/home',
+      initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegistrationPage(),
         '/home': (context) => const HomePage(),
-        '/addtask':(context) => AddTask(),
-      '/noti':(context) =>  Notidetail(),
+        '/addtask': (context) => AddTask(),
+        '/noti': (context) => Notidetail(),
       },
       theme: ThemeData(
         appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),

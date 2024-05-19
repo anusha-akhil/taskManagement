@@ -34,102 +34,156 @@ class _TaskListState extends State<TaskList> {
         formattedDate =
             DateFormat('dd-MMM-yyyy    kk:mm:a').format(task.deadlineDate!);
 
+
         return Card(
-          child: ListTile(
-            contentPadding: EdgeInsets.only(left: 10, right: 10),
-            horizontalTitleGap: 4,
-            title: Text(
-              task.title.toString().toUpperCase(),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            subtitle: Column(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(task.description.toString()),
-                // Text(
-                //   '${task.deadlineDate!.day} / ${task.deadlineDate!.month} / ${task.deadlineDate!.year}  -  ${task.deadlineDate!.hour} : ${task.deadlineDate!.minute}',
-                //   style: TextStyle(color: Colors.green),
-                // ),
-                Text(
-                  formattedDate.toString(),
-                  style: TextStyle(
-                      color: Colors.purple, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  task.expectedDuration.toString(),
-                  style: TextStyle(color: Colors.grey),
-                ),
-                // Divider(),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.end,
-                //   children: [
-                //     Text(task.status == true ? "Completed" : "Pending")
-                //   ],
-                // )
-              ],
-            ),
-            trailing: Wrap(
-              spacing: 15,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddTask(
-                            task: task,
-                          ),
-                        ));
-                  },
-                  child: Icon(
-                    Icons.edit,
-                    color: Colors.blue,
-                    size: 17,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: Text(
-                          "Do you want to delete this task?",
-                          style: TextStyle(fontSize: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          size: 16,
+                          color:
+                              task.status == true ? Colors.green : Colors.red,
+                        )
+                      ],
+                    ),
+                    Flexible(
+                      child: Container(
+                        margin: EdgeInsets.only(left: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              task.title.toString().toUpperCase(),
+                              // "sbjjsh fsnf s fhs fszfh zshf zsf zshfbzs fzsjhfbzs fzs f sfsf fgdgh",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(task.description.toString(),style: TextStyle(fontSize: 11),),
+                            // Text("sjfjd fznd fz sfzs fzsf zshf znd jzds zs dsjhzsbzd gzdbjhz zsd gzj  g",style: TextStyle(fontSize: 11),),
+                            Row(
+                              children: [
+                                Text(
+                                  'Deadline : ',
+                                  style:
+                                      TextStyle(color: Colors.grey, fontSize: 12),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    formattedDate.toString(),
+                                    // "sfnmknf mf sdsg jnf sfn snf szfn sjzfss fzsf sjf zs sfsddgfxg" ,
+                                    style: TextStyle(
+                                        color: Colors.purple,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Expected duration : ',
+                                  style:
+                                      TextStyle(color: Colors.grey, fontSize: 12),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    task.expectedDuration.toString(),
+                                    
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
-                        actions: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text("Cancel")),
-                          TextButton(
-                              onPressed: () {
-                                service.deleteTask(task.id.toString());
-                                Navigator.pop(context);
-                              },
-                              child: Text("Ok"))
-                        ],
                       ),
-                    );
-                  },
-                  child: Icon(
-                    Icons.delete,
-                    color: Colors.red,
-                    size: 17,
+                    ),
+                  ],
+                ),
+                Divider(),
+                Container(
+                  margin: EdgeInsets.only(left: 10,right: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddTask(
+                                    task: task,
+                                  ),
+                                ));
+                          },
+                          child: Row(
+                            children: [
+                              Text(
+                                'Edit',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Icon(
+                                Icons.edit,
+                                color: Colors.blue,
+                                size: 15,
+                              ),
+                            ],
+                          )),
+                      GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text(
+                                  "Do you want to delete this task?",
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Cancel")),
+                                  TextButton(
+                                      onPressed: () {
+                                        service.deleteTask(task.id.toString());
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Ok"))
+                                ],
+                              ),
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Text(
+                                'Remove',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Icon(
+                                Icons.close,
+                                color: Colors.red,
+                                size: 15,
+                              ),
+                            ],
+                          ))
+                    ],
                   ),
                 )
               ],
-            ),
-            leading: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              child: Icon(
-                Icons.circle,
-                size: 16,
-                color: task.status == true ? Colors.green : Colors.red,
-              ),
             ),
           ),
         );

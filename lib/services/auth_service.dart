@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taskmanagementapp/pages/widgets/widgets.dart';
 
-class AuthService{
-   final _auth = FirebaseAuth.instance;
-  
+class AuthService {
+  final _auth = FirebaseAuth.instance;
 
   userLogin(String email, String password, BuildContext context) async {
     showDialog(
@@ -16,6 +16,8 @@ class AuthService{
           email: email.trim(), password: password.trim());
       Navigator.pop(context);
       if (user.user != null) {
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString("token", user.user!.uid.toString());
         Navigator.pushNamed(context, '/home');
       }
     } on FirebaseAuthException catch (e) {
@@ -44,14 +46,16 @@ class AuthService{
     try {
       UserCredential newUser = await _auth.createUserWithEmailAndPassword(
           email: email.trim(), password: password.trim());
-         
+
       Navigator.pop(context);
       if (newUser.user != null) {
+         final SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString("token", newUser.user!.uid.toString());
         Navigator.pushNamed(context, '/home');
       }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
-      print("error-----------{$e}");
+      // print("error-----------{$e}");
       if (e.code == 'email-already-in-use') {
         showToastWidget("The email is already in use");
         //  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("djjsdjhsb")));

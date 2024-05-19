@@ -29,7 +29,7 @@ class TaskService {
         }).toList();
       });
     } on FirebaseException catch (e) {
-      print(e);
+      // print(e);
       throw (e);
     }
   }
@@ -38,10 +38,10 @@ class TaskService {
   updateTask(TaskModel task) {
     try {
       final taskMap = task.toMap();
-      print("update-----$taskMap--${task.id}");
+      // print("update-----$taskMap--${task.id}");
       taskInstance.doc(task.id).update(taskMap);
     } on FirebaseException catch (e) {
-      print(e);
+      // print(e);
       throw (e);
     }
   }
@@ -50,7 +50,7 @@ class TaskService {
      try {
       taskInstance.doc(id).delete();
     } on FirebaseException catch (e) {
-      print(e);
+      // print(e);
       throw (e);
     }
   }

@@ -38,14 +38,14 @@ class NotificationService {
 
   void onDidReceiveLocalNotification(
       int id, String? title, String? body, String? payload) {
-    print("id-$id");
+    // print("id-$id");
   }
 
   void onDidReceiveNotificationResponse(
       NotificationResponse notificationResponse) async {
     final String? payload = notificationResponse.payload;
     if (notificationResponse.payload != null) {
-      print('notification payload: $payload');
+      // print('notification payload: $payload');
       await MyApp.navigatorKey.currentState?.push(MaterialPageRoute(
         builder: (context) => Notidetail(
           payload: payload,
@@ -110,7 +110,7 @@ class NotificationService {
         tz.TZDateTime.from(
           scheduledNotificationDateTime,
           tz.local,
-        ).subtract(Duration(minutes: 10)),
+        ).subtract(const Duration(minutes: 10)),
         // scheduledDate,
         notificationDetails,
         uiLocalNotificationDateInterpretation:

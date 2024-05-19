@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Form(
             key: _formKey,
             child: Container(
-              margin: EdgeInsets.only(left: 20, right: 20),
+              margin:const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                         email,
                         "Email",
                         false,
-                        Icon(
+                      const  Icon(
                           Icons.email,
                           size: 16,
                         )),
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                         password,
                         "Password",
                         true,
-                        Icon(
+                      const  Icon(
                           Icons.password_outlined,
                           size: 16,
                         )),

@@ -12,7 +12,7 @@ Widget myTextfieldWidget(String text, TextEditingController controller) {
     decoration: InputDecoration(
         border: const OutlineInputBorder(),
         hintText: text,
-        hintStyle: TextStyle(fontSize: 11,color: Colors.grey)),
+        hintStyle:const TextStyle(fontSize: 11,color: Colors.grey)),
     maxLines: null,
   );
 }
@@ -22,6 +22,6 @@ Widget textWidget(String text) {
       margin: const EdgeInsets.only(left: 4),
       child: Text(
         text,
-        style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
+        style:const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
       ));
 }

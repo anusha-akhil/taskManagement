@@ -23,7 +23,6 @@ class _AddTaskState extends State<AddTask> {
 
   TaskService service = TaskService();
   bool _isChecked = false;
-  String _currText = '';
   bool isEdit = false;
   @override
   void dispose() {
@@ -158,7 +157,7 @@ class _AddTaskState extends State<AddTask> {
                         task = _addtask();
                       }
                       NotificationService.showSchedulenotification(
-                          title:title.text.toString(), body: desc.text.toString(), payload: "The task should be done before $dateTime",scheduledNotificationDateTime: dateTime);
+                          title:title.text.toString(), body: desc.text.toString(), payload: "${title.text.toString().toUpperCase()} : $dateTime \n 10 minutes left",scheduledNotificationDateTime: dateTime);
                       if (task != null) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(isEdit
@@ -179,11 +178,11 @@ class _AddTaskState extends State<AddTask> {
                         borderRadius: BorderRadius.circular(20)),
                     child: Center(
                       child: Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             left: 18.0, right: 18, top: 10, bottom: 10),
                         child: Text(
                           isEdit ? 'UPDATE' : "ADD",
-                          style: TextStyle(
+                          style:const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 17),

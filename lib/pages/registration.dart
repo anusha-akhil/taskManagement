@@ -29,7 +29,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           child: Form(
             key: _formKey,
             child: Container(
-              margin: EdgeInsets.only(left: 20, right: 20),
+              margin:const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +47,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         email,
                         "Email",
                         false,
-                        Icon(
+                      const  Icon(
                           Icons.email,
                           size: 16,
                         )),
@@ -58,7 +58,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         password,
                         "Password",
                         true,
-                        Icon(
+                    const    Icon(
                           Icons.password_outlined,
                           size: 16,
                         )),
@@ -69,7 +69,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         confrmPassword,
                         "Confirm Password",
                         true,
-                        Icon(
+                        const Icon(
                           Icons.password_outlined,
                           size: 16,
                         )),
@@ -80,7 +80,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       height: size.height * 0.063,
                       child: buttonContainer("Register", () {
                         if (_formKey.currentState!.validate()) {
-                          print("snjnfn---${email.text}");
+                          // print("snjnfn---${email.text}");
                           if (password.text == confrmPassword.text) {
                             service.userRegistration(
                                 email.text, password.text, context);
